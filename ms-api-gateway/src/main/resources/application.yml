@@ -1,0 +1,60 @@
+server:
+    port: 2000
+spring:
+  application:
+    name: ms-gateway
+  cloud:
+    gateway:
+          
+      routes:
+      - id: ms-order
+        uri: lb://MS-ORDER
+        predicates:
+        - Path=/order/** 
+                
+      - id: ms-account
+        uri: lb://MS-ACCOUNT
+        predicates:
+        - Path=/account/**
+                
+      - id: ms-fundtransfer
+        uri: lb://MS-FUNDTRANSFER
+        predicates:
+        - Path=/fund/** 
+                
+      - id: ms-product
+        uri: lb://MS-PRODUCT
+        predicates:
+        - Path=/product/** 
+                
+      - id: ms-customer
+        uri: lb://MS-CUSTOMER
+        predicates:
+        - Path=/customer/** 
+      
+      - id: ms-food-product
+        uri: lb://MS-FOOD-PRODUCT
+        predicates:
+        - Path=/food/product/** 
+        
+      - id: ms-cart
+        uri: lb://MS-CART-SERVICE
+        predicates:
+        - Path=/cart/** 
+        
+      - id: ms-food
+        uri: lb://MS-FOOD-SERVICE
+        predicates:
+        - Path=/food/** 
+        
+       
+                
+         
+               
+eureka:
+   client:
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka
+   instance:
+    prefer-ip-address: true
+    
